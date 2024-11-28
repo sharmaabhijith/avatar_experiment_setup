@@ -47,7 +47,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">CART: CARLA Town 10 Dataset</h1>
+            <h1 class="title is-1 publication-title">Experimental Workflow for AVATAR</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -60,10 +60,10 @@
                 <a href="https://uwaterloo.ca/automation-intelligent-systems-group/profiles/nasser-lashgarian-azad" target="_blank">Nasser Azad</a><sup>†,1</sup>,
               </span>
               <span class="author-block">
-                <a href="https://uwaterloo.ca/electrical-computer-engineering/profile/sfischme" target="_blank"></a>Sebastian Fischmeister<sup>†,1</sup>,
+                <a href="https://uwaterloo.ca/electrical-computer-engineering/profile/sfischme" target="_blank">Sebastian Fischmeister</a><sup>†,1</sup>,
               </span>
               <span class="author-block">
-                <a href="https://www.linkedin.com/in/stefan-marksteiner-332a4184?originalSubdomain=at" target="_blank"></a>Stefan Marksteiner<sup>3</sup>
+                <a href="https://www.linkedin.com/in/stefan-marksteiner-332a4184?originalSubdomain=at" target="_blank">Stefan Marksteiner</a><sup>3</sup>
               </span>
             </div>
 
@@ -74,29 +74,8 @@
               <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Main Author, <sup>†</sup>Indicates Equal Advising</small></span>
               <span class="eql-cntrb"><small></small></span>
             </div>
-
             <div class="column has-text-centered">
               <div class="publication-links">
-                <!-- Dataset (zip) -->
-                <span class="link-block">
-                  <a href="https://www.techrxiv.org/doi/full/10.36227/techrxiv.172165647.71183157/v2" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fa fa-download"></i>
-                    </span>
-                    <span>Dataset (zip)</span>
-                  </a>
-                </span>
-
-                <!-- Dataset (tar) -->
-                <span class="link-block">
-                  <a href="https://www.techrxiv.org/doi/full/10.36227/techrxiv.172165647.71183157/v2" target="_blank" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fa fa-download"></i>
-                    </span>
-                    <span>Dataset (tar)</span>
-                  </a>
-                </span>
-
                 <!-- Paper Link -->
                 <span class="link-block">
                   <a href="https://ieeexplore.ieee.org/abstract/document/10646575/" target="_blank"
@@ -119,68 +98,137 @@
 <!-- Subject Driven Video Generation carousel -->
 <section class="hero teaser">
   <div class="hero-body">
-    <center>
-    <img src="static/images/catt.png" alt="Inference Overview" class="center-image" style="transform: scale(0.75); margin-top: -70px;"/>
-    </center>
-    <h2 class="subtitle has-text-centered" style="transform: scale(0.9); margin-top: -50px; margin-bottom: 0;">
-      Sample image frames from the <strong>CART</strong> (CARLA Town 10) dataset. Town 10 is the HD map in CARLA, replicating realistic scenarios.
-    </h2>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <center>
+        <img src="static/images/avatar_block_diagram.jpg" alt="Inference Overview" class="center-image" style="transform: scale(0.75); margin-top: -85px;"/>
+        </center>
+        <h2 class="subtitle has-text-centered" style="transform: scale(0.9); margin-top: -45px; margin-bottom: 0;">
+          <strong>AVATAR</strong> is designed to standardize the testing process for adversarial patches, a significant concern in autonomous driving scenarios. The figure illustrates the overall flow diagram of the <strong>AVATAR</strong> Framework
+        </h2>
+      </div>
+    </div>
   </div>
 </section>
 <!-- End Subject Driven Video Generation carousel -->
 
-<!-- Our Contribution -->
+<!-- Workflow -->
 <section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-narrow" style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; margin-right: 30px;">
-        <h2 class="title is-3">Data Description</h2>
-      </div>
-      <ul style="list-style-type: disc; padding: 0; margin-top: 20px;">
-        <li style="margin-bottom: 10px;"><strong>Photo-realistic dataset</strong> out of CARLA's Town 10</li>
-        <li style="margin-bottom: 10px;">Total of <strong>4500 images (Train ~ 4300, Val ~ 200)</strong> with 1280×720 pixels resolution.</li>
-        <li style="margin-bottom: 10px;">Classes include: <strong>Person, Vehicle, Motorbike, Traffic Light, Stop Sign.</strong></li>
-        <li style="margin-bottom: 10px;">Collected in CARLA using autopilot driving in Town 10 <strong>(moving camera scenario)</strong>.</li>
-        <li style="margin-bottom: 10px;">Images are collected under <strong>diverse lighting</strong> (noon, sunset, night) and <strong>weather conditions</strong> (rain, clear, fog)</li>
-        <li style="margin-bottom: 10px;">The traffic level is moderate with around <strong>40 vehicles</strong> and <strong>70 pedestrians</strong> in the map.</li>
-        <li style="margin-bottom: 10px;">The labels are available in <strong>YOLO format</strong> and annotations are performed using the CVAT tool: <a href="https://www.cvat.ai/" target="_blank">https://www.cvat.ai/</a></li>
+  <center>
+      <h2 class="title is-3">&#127919; High-Level Overview of Workflow</h2>
+  </center>
+  <div class="columns is-centered">
+      <ul style="list-style-type: none; margin-top: 50px;">
+          <li style="margin-bottom: 10px;">🌟 <strong>STEP 1:</strong> &nbsp;&nbsp; Set up <strong>CARLA from source</strong> with <strong>Unreal Engine</strong> and install all required drivers and libraries.</li>
+          <li style="margin-bottom: 10px;">🌟 <strong>STEP 2:</strong> &nbsp;&nbsp; Develop and train an <strong>object detection model</strong> for evaluation against adversarial patches <em>(target model).</em></li>
+          <li style="margin-bottom: 10px;">🌟 <strong>STEP 3:</strong> &nbsp;&nbsp; Create and train <strong>adversarial patches</strong> for testing the target model within CARLA.</li>
+          <li style="margin-bottom: 10px;">🌟 <strong>STEP 4:</strong> &nbsp;&nbsp; Integrate the <strong>object detection model</strong> with CARLA's PythonAPI Client for real-time simulation analysis.</li>
+          <li style="margin-bottom: 10px;">🌟 <strong>STEP 5:</strong> &nbsp;&nbsp; Add <strong>adversarial patches as material assets</strong> and update vehicle blueprints in Unreal Engine to apply the patches.</li>
+          <li style="margin-bottom: 10px;">🌟 <strong>STEP 6:</strong> &nbsp;&nbsp; Use <strong>AVATAR's GUI</strong> to configure experiment parameters and initiate the CARLA simulation.</li>
+          <li style="margin-bottom: 10px;">🌟 <strong>STEP 7:</strong> &nbsp;&nbsp; Evaluate post-simulation results using the <strong>Adversarial Trace Classifier</strong> to detect adversarial impacts.</li>
+      </ul>
+  </div>
+</section>
+<!-- End Workflow -->
+
+
+<!-- CARLA UE -->
+<section class="section hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop" style="margin-bottom: -50px;">
+      <center>
+          <h2 class="title is-3" style="margin-top: -50px;">&#128663; Installing CARLA from Source &#128736;</h2>
+      </center>
+      <center>
+        <em>
+        <p style="margin-bottom: 20px; margin-top: 30px">Installing CARLA from source allows full access to its underlying code and assets, 
+        enabling customization of maps, vehicle models, and other resources. It provides the flexibility to modify and extend the simulator's functionality, 
+        such as adding new features or adjusting existing ones, which cannot be done with pre-built versions.</p>
+        </em>
+      </center>
+      <ul>
+        <li style="margin-bottom: 10px;">&#10148; As we need to integrate adversarial patch in the CARLA map, we need to install CARLA from source.</li>
+        <li style="margin-bottom: 10px;">&#10148; This process is slightly more complex as we also need to install Unreal Engine (UE), as compared to using pre-built CARLA.</li>
+        <li style="margin-bottom: 10px;">&#10148; Ensure that the GPU drivers and CUDA dependencies are properly configured, ensuring compatibility with PyTorch version.</li>
+        <li style="margin-bottom: 10px;">&#10148; Follow step-by-step instruction from this link <a href="https://carla.readthedocs.io/en/latest/build_linux/" target="_blank">CARLA Linux Build</a> to install Unreal Engine and CARLA.</li>
+        <li style="margin-bottom: 10px;">&#10148; Eventhough we have newer versions of CARLA as well as UE, we work with stable versions: CARLA 0.9.12 and UE 4.26.</li>
+        <li style="margin-bottom: 10px;">&#10148; It is essential to install CARLA's fork of UE 4.26, as it includes specific patches required for CARLA. Avoid using a random version to ensure compatibility.</li>
       </ul>
     </div>
   </div>
 </section>
-<!-- End Our Contribution -->
+<!-- End CARLA UE -->
 
-<!-- Background -->
-<section class="section hero">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <!-- <div class="column is-narrow" style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; margin-right: 30px;">
-      <h2 class="title is-3">Background</h2>
-      </div>
-      <br>
-      <ul style="list-style-type: disc; padding: 0; margin: 0;">
-      <li style="margin-bottom: 10px;">General-purpose datasets like PASCAL VOC and MS COCO are often used for training models and adversarial patches, though they include classes not specific to autonomous driving.</li>
-      <li style="margin-bottom: 10px;">Datasets focused on natural driving scenes, such as KITTI, CityScape, Waymo Open Dataset, and NuScenes, are widely used for autonomous vehicle tasks.</li>
-      <li style="margin-bottom: 10px;">Collecting real-world driving data is resource-intensive, typically conducted by large companies or research institutes.</li>
-      <li style="margin-bottom: 10px;">Synthetic datasets, such as CARLA Gear, CarFree, and CARLA Object Detection Dataset (CODD), provide an alternative to real-world data.</li>
-      <li style="margin-bottom: 10px;">Most existing CARLA datasets are based on Town 1-5, which are less realistic as compared to Town 10.</li>
-      <li style="margin-bottom: 10px;">CARLA-Gear, although derived from Town 10, employs static or fixed camera view points that limit its applicability to our specific objectives.</li>
-      <li style="margin-bottom: 10px;">Synthetic datasets are generated using simulations, such as driving in autopilot mode on CARLA maps, reducing resource requirements.</li>
-      </ul> -->
-    <center>
-    <p>This dataset has been used in original paper to train YOLOv5 model as well as the adversarial patch used in the experiments</p>
-    </center>
+
+<!-- OD MODEL -->
+<section class="section hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop" style="margin-bottom: -50px;">
+      <center>
+          <h2 class="title is-3" style="margin-top: -50px;">🤖 Training Object Detection Model </h2>
+      </center>
+      <center>
+        <em>
+        <p style="margin-bottom: 20px; margin-top: 30px">We utilize YOLO for our experiments due to its superior performance compared to R-CNNs. YOLO (You Only Look Once) offers faster inference and 
+          efficiency by processing the entire image in a single pass, making it ideal for real-time applications </p>
+        </em>
+      </center>
+      <ul>
+        <li style="margin-bottom: 10px;">&#10148; AVATAR is object detection model-agnostic but requires the model's weights and architecture for its use with CARLA.</li>
+        <li style="margin-bottom: 10px;">&#10148; The model's architecture is crucial for model (weight) loading during object detection using CARLA's Python API Client.</li>
+        <li style="margin-bottom: 10px;">&#10148; The model's weights can be imported during experiment initialization using AVATAR's GUI.</li>
+        <li style="margin-bottom: 10px;">&#10148; Ensure the same technique (code) used to train or load the model is followed when integrating it into CARLA.</li>
+        <li style="margin-bottom: 10px;">&#10148; YOLOv5 was used in our experiments; however, newer architectures (e.g., YOLOv11) can also be utilized.</li>
+        <li style="margin-bottom: 10px;">&#10148; Refer to <a href="https://github.com/ultralytics/yolov5/" target="_blank" style="color: #007BFF;">Ultralytics GitHub</a> to load and train an object detection model of your choice.</li>
+        <li style="margin-bottom: 10px;">&#10148; The dataset for model training must be photorealistic like <a href="https://sharmaabhijith.github.io/CARLA_Town10_Dataset/" target="_blank" style="color: #007BFF;">CART</a> for its effectiveness in CARLA or in the real world</li>
+      </ul>
     </div>
   </div>
 </section>
-<!-- End Background -->
- 
+<!-- End OD MODEL -->
+
+
+<!-- ADV PATCH -->
+<section class="section hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop" style="margin-bottom: -50px;">
+      <center>
+          <h2 class="title is-3" style="margin-top: -50px;">🕷️ Training Adversarial Patch </h2>
+      </center>
+      <center>
+        <em>
+        <p style="margin-bottom: 20px; margin-top: 30px">Download a pre-trained adversarial patch, crafted using the CART dataset, for attacking YOLOv5 in the CARLA environment. </p>
+        </em>
+        <span class="link-block">
+          <a href="https://ieeexplore.ieee.org/abstract/document/10646575/" target="_blank"
+            class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <i class="ai ai-arxiv"></i>
+            </span>
+            <span>Download Image File</span>
+          </a>
+        </span>
+      </center>
+      <ul>
+        <li style="margin-bottom: 10px;">&#10148; AVATAR is object detection model-agnostic but requires the model's weights and architecture for its use with CARLA.</li>
+        <li style="margin-bottom: 10px;">&#10148; The model's architecture is crucial for model (weight) loading during object detection using CARLA's Python API Client.</li>
+        <li style="margin-bottom: 10px;">&#10148; The model's weights can be imported during experiment initialization using AVATAR's GUI.</li>
+        <li style="margin-bottom: 10px;">&#10148; Ensure the same technique (code) used to train or load the model is followed when integrating it into CARLA.</li>
+        <li style="margin-bottom: 10px;">&#10148; YOLOv5 was used in our experiments; however, newer architectures (e.g., YOLOv11) can also be utilized.</li>
+        <li style="margin-bottom: 10px;">&#10148; Refer to <a href="https://github.com/ultralytics/yolov5/" target="_blank" style="color: #007BFF;">Ultralytics GitHub</a> to load and train an object detection model of your choice.</li>
+        <li style="margin-bottom: 10px;">&#10148; The dataset for model training must be photorealistic like <a href="https://sharmaabhijith.github.io/CARLA_Town10_Dataset/" target="_blank" style="color: #007BFF;">CART</a> for its effectiveness in CARLA or in the real world</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- End ADV PATCH -->
+
 
 <!--BibTex citation -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <p><em>If you find our dataset useful, please consider citing our work.</em></p>
+    <p><em>If you find our contribution useful, please consider citing our work.</em></p>
     <pre><code>@article{sharma2024avatar,
       title={AVATAR: Autonomous Vehicle Assessment through Testing of Adversarial Patches in Real-time},
       author={Sharma, Abhijith and Narayan, Apurva and Azad, Nasser Lashgarian and Fischmeister, Sebastian and Marksteiner, Stefan},
