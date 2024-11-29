@@ -86,6 +86,15 @@
                     <span>Original Paper</span>
                   </a>
                 </span>
+                <span class="link-block">
+                  <a href="https://github.com/sharmaabhijith/AVATAR/tree/master" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>GitHub</span>
+                  </a>
+                </span>
           </div>
         </div>
       </div>
@@ -175,7 +184,7 @@
       </center>
       <ul>
         <li style="margin-bottom: 10px;">&#10148; AVATAR is object detection model-agnostic but requires the model's weights and architecture for its use with CARLA.</li>
-        <li style="margin-bottom: 10px;">&#10148; The model's architecture is crucial for model (weight) loading during object detection using CARLA's Python API Client.</li>
+        <li style="margin-bottom: 10px;">&#10148; The model's architecture is crucial for model loading for object detection using CARLA's Python API Client (see later).</li>
         <li style="margin-bottom: 10px;">&#10148; The model's weights can be imported during experiment initialization using AVATAR's GUI.</li>
         <li style="margin-bottom: 10px;">&#10148; Ensure the same technique (code) used to train or load the model is followed when integrating it into CARLA.</li>
         <li style="margin-bottom: 10px;">&#10148; YOLOv5 was used in our experiments; however, newer architectures (e.g., YOLOv11) can also be utilized.</li>
@@ -193,35 +202,170 @@
   <div class="hero-body">
     <div class="container is-max-desktop" style="margin-bottom: -50px;">
       <center>
-          <h2 class="title is-3" style="margin-top: -50px;">🕷️ Training Adversarial Patch </h2>
+        <h2 class="title is-3" style="margin-top: -50px;">🕷️ Training Adversarial Patch </h2>
       </center>
       <center>
         <em>
-        <p style="margin-bottom: 20px; margin-top: 30px">Download a pre-trained adversarial patch, crafted using the CART dataset, for attacking YOLOv5 in the CARLA environment. </p>
+        <p style="margin-bottom: -70px; margin-top: 30px">Download a pre-trained adversarial patch, crafted using the CART dataset, for attacking YOLOv5's detection of a car in the CARLA environment. We use this patch in all our experiments.</p>
         </em>
-        <span class="link-block">
-          <a href="https://ieeexplore.ieee.org/abstract/document/10646575/" target="_blank"
+        <div >
+          <img src="static/images/adversarial_patch.png" alt="adv patch" class="center-image" style="transform: scale(0.7); margin-top: 70px;"/>
+        </div>
+        <span class="link-block" style="margin-top: -20px;">
+          <a href="https://github.com/sharmaabhijith/avatar_experiment_setup/blob/main/static/images/adversarial_patch.png?raw=true" target="_blank"
             class="external-link button is-normal is-rounded is-dark">
             <span class="icon">
-              <i class="ai ai-arxiv"></i>
+              <i class="fa fa-download"></i>
             </span>
             <span>Download Image File</span>
           </a>
         </span>
       </center>
-      <ul>
-        <li style="margin-bottom: 10px;">&#10148; AVATAR is object detection model-agnostic but requires the model's weights and architecture for its use with CARLA.</li>
-        <li style="margin-bottom: 10px;">&#10148; The model's architecture is crucial for model (weight) loading during object detection using CARLA's Python API Client.</li>
-        <li style="margin-bottom: 10px;">&#10148; The model's weights can be imported during experiment initialization using AVATAR's GUI.</li>
-        <li style="margin-bottom: 10px;">&#10148; Ensure the same technique (code) used to train or load the model is followed when integrating it into CARLA.</li>
-        <li style="margin-bottom: 10px;">&#10148; YOLOv5 was used in our experiments; however, newer architectures (e.g., YOLOv11) can also be utilized.</li>
-        <li style="margin-bottom: 10px;">&#10148; Refer to <a href="https://github.com/ultralytics/yolov5/" target="_blank" style="color: #007BFF;">Ultralytics GitHub</a> to load and train an object detection model of your choice.</li>
-        <li style="margin-bottom: 10px;">&#10148; The dataset for model training must be photorealistic like <a href="https://sharmaabhijith.github.io/CARLA_Town10_Dataset/" target="_blank" style="color: #007BFF;">CART</a> for its effectiveness in CARLA or in the real world</li>
-      </ul>
+      <ul style="margin-top: 20px;">
+        <li style="margin-bottom: 10px;">&#10148; Adversarial patches can be designed as <strong>targeted</strong> (more challenging) or <strong>untargeted</strong> (simpler).</li>
+        <li style="margin-bottom: 10px;">&#10148; In our experiments, the patch misled YOLOv5 to ignore cars with the patch applied (untargeted approach).</li>
+        <li style="margin-bottom: 10px;">&#10148; Refer to this <a href="https://github.com/SamSamhuns/yolov5_adversarial/" target="_blank" style="color: #007BFF;">GitHub repository</a> for training adversarial patches on YOLOv5.</li>
+        <li style="margin-bottom: 10px;">&#10148; The YOLOv5 model in the repository is based on Ultralytics, making it compatible with our trained models.</li>
+        <li style="margin-bottom: 10px;">&#10148; Patch training hyperparameters require trial & error. (Our case: 200×200 patch, 100 epochs, learning rate 0.03).</li>
+        <li style="margin-bottom: 10px;">&#10148; Use a photorealistic dataset like <a href="https://sharmaabhijith.github.io/CARLA_Town10_Dataset/" target="_blank" style="color: #007BFF;">CART</a> for effective results in CARLA or real-world scenarios.</li>
+        <li style="margin-bottom: 10px;">&#10148; Traning combines <strong>classification loss</strong>, <strong>total variation</strong>, and <strong>non-printability score</strong>, applying patch randomly over each image.</li>
+      </ul>      
+      </div>
     </div>
   </div>
 </section>
 <!-- End ADV PATCH -->
+
+
+
+<!-- OD MODEL IN CARLA -->
+<section class="section hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop" style="margin-bottom: -50px;">
+      <center>
+          <h2 class="title is-3" style="margin-top: -50px;">📸 Object Detection in CARLA </h2>
+      </center>
+      <center>
+        <em>
+        <p style="margin-bottom: 20px; margin-top: 30px"><strong>CARLA's Python API Client</strong> is an interface that enables users to interact with simulator programmatically using Python. 
+          It provides a high-level API to control various aspects of simulation, like spawning, managing or controlling actors and accessing their sensor data. This client facilitates seamless integration of custom code. Hence, the object detection must be integrated into the Python API client.
+          This allows the vehicle to autonomously navigate the map while detecting objects in the scene. </p>
+        </em>
+        <div>
+          <img src="static/images/pythonapi.png" alt="adv patch" class="center-image" style="transform: scale(0.6); margin-top: -80px;"/>
+        </div>
+        <div style="transform: scale(0.95); margin-top: -80px; margin-bottom: 30px;">
+          <p>Source: <a href="https://carla.readthedocs.io/en/latest/build_system/" target="_blank" style="color: #007BFF;">CARLA Python API Docs</a></p>
+          </em>
+        </div>
+ 
+      </center>
+      <ul style="margin-top: 20px;">
+        <li style="margin-bottom: 10px;">&#10148; CARLA, built from source, requires substantial GPU resources due to its dependency on Unreal Engine (GPU-intensive).</li>
+        <li style="margin-bottom: 10px;">&#10148; In our experiments, the simulation runs in autopilot mode, enabling the vehicle to navigate autonomously within the map.</li>
+        <li style="margin-bottom: 10px;">&#10148; Combining object detection with Python API's autopilot functionality demands a high-performance GPU (min. 16GB).</li>
+        <li style="margin-bottom: 10px;">&#10148; Access the object detection integration code for Python API's autopilot mode here: <a href="https://github.com/sharmaabhijith/AVATAR/blob/master/auto_object_detection.py" target="_blank" style="color: #007BFF;">GitHub Link</a>.</li>    
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- End OD MODEL IN CARLA -->
+
+
+<!-- PATCH IN CARLA -->
+<section class="section hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop" style="margin-bottom: -50px;">
+      <center>
+          <h2 class="title is-3" style="margin-top: -50px;">⚠️🚗 Adversarial Patch in CARLA </h2>
+      </center>
+      <center>
+        <em>
+        <p style="margin-bottom: 20px; margin-top: 30px">Allows evaluation of the adversarial patch's impact on object detection, while blending the patch visually with the scene for realism. 
+          It enables testing autonomous driving systems in near-real-world conditions.</p>
+        </em>
+        <div class="columns is-centered has-text-centered" style="margin-top: 40px;">
+          <div class="column is-two-fifths">
+              <!-- Image embed code here -->
+              <img src="static/images/materialblp.png" alt="material blp" style="transform: scale(1);"/>
+          </div>
+          <div class="column is-three-fifths">
+            <!-- Image embed code here -->
+            <img src="static/images/vehicle_blp.png" alt="vehicle blp" style="transform: scale(0.9); transform-origin: top center;"/>
+          </div>
+        </div>
+        <div style="transform: scale(0.95); margin-top: -40px; margin-bottom: 30px;">
+          <p>Material Generation and Modified Adversarial Vehicle Blueprint</p>
+          </em>
+        </div>
+      </center>
+      <ul>
+        <li style="margin-bottom: 30px;">&#10148; <strong>Adversarial Patch Import into CARLA:</strong>
+          <ul>
+            <li>Import the adversarial patch into Unreal Engine. Convert the trained patch image (.png/.jpeg) into a CARLA asset (.uasset). The patch can be attached to a moving actor (vehicle) or placed at a static location in the map.</li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 30px;">&#10148; <strong>Material Instance Creation in Unreal Engine:</strong>
+          <ul>
+            <li>Create a material instance in UE. Configure properties such as <strong>opacity:</strong> controls transparency and <strong>roughness:</strong> adjusts surface texture. Use <strong>metallic material</strong> with high roughness and opacity for better visibility. Assign the trained patch's file path in UE’s blueprint library. UE reads the image and converts it into a material instance.</li>
+          </ul>
+        </li>
+        <li style="margin-bottom: 30px;">&#10148; <strong>Applying Adversarial Patch as a CARLA Asset:</strong>
+          <ul style="margin-top: 10px;">
+            <li style="margin-left: 15px;">&#9654; Adversarial material instance created in UE can be applied to any CARLA asset, such as a vehicle or a static object.</li>
+            <li style="margin-left: 15px;">&#9654; This integration ensures the patch appears as a natural and realistic part of the environment.</li>
+            <li style="margin-left: 15px;">&#9654; Example setup: Attach the patch to a board mounted on a vehicle that moves randomly across the CARLA map.</li>
+            <li style="margin-left: 15px;">&#9654; This dynamic setup allows for evaluating the impact of the patch on object detection during autonomous driving scenarios.</li>
+            <li style="margin-left: 15px;">&#9654; A custom blueprint for the adversarial patch board is created in UE to enhance flexibility.</li>
+            <li style="margin-left: 15px;">&#9654; The blueprint enables the selection of different patches dynamically, allowing experimentation with various designs.</li>
+          </ul>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</section>
+<!-- End PATCH IN CARLA -->
+
+
+
+<!-- AVATAR GUI -->
+<section class="section hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop" style="margin-bottom: -50px;">
+      <center>
+          <h2 class="title is-3" style="margin-top: -50px;">🎛️ AVATAR's GUI </h2>
+      </center>
+      <center>
+        <em>
+        <p style="margin-bottom: 20px; margin-top: 30px">The GUI serves as the primary entry point for interacting with the AVATAR framework. It seamlessly integrates with the underlying PythonAPI, 
+          automatically invoking the necessary components to execute experiments efficiently.</p>
+        </em>
+      </center>
+      <ul style="margin-top: 20px;">
+        <li style="margin-bottom: 10px;">&#10148; The features of GUI is explained in detail in the main paper. </li>
+        <li style="margin-bottom: 10px;">&#10148; Access the Python (Tkinter based) code for the AVATAR's GUI here: <a href="https://github.com/sharmaabhijith/AVATAR/blob/master/gui.py" target="_blank" style="color: #007BFF;">GitHub Link</a>.</li>    
+      </ul>
+      <p>Typically, the PythonAPI is sufficient to interact with CARLA, eliminating the need to directly work with Unreal Engine.
+        In our case, we modify CARLA assets (e.g., for adversarial patch attacks). This requires access to Unreal Engine asset 
+        files to specify whether an adversarial patch attack should be conducted and to select the patch image to use.
+      </p>
+      <br>
+      <p>
+        Within the <a href="https://github.com/sharmaabhijith/AVATAR/blob/master/gui.py" target="_blank" style="color: #007BFF;">AVATAR GitHub</a> repository, 
+        there is a <em>patches</em> folder. Inside, there is a flag file used to signal Unreal Engine whether an attack should be performed, and
+        a patch image file is transferred to Unreal Engine, converted into an material asset, and applied to a vehicle asset.
+      </p>
+      <br>
+      <p>
+        <strong>NOTE: </strong> Do not delete the flag file, as it is critical for attack execution. 
+        one can replace the patch image with a custom image to be used as adversarial patch in simulations.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- End AVATAR GUI -->
+
 
 
 <!--BibTex citation -->
