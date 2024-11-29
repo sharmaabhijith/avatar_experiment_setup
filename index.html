@@ -339,7 +339,7 @@
       <center>
         <em>
         <p style="margin-bottom: 20px; margin-top: 30px">The GUI serves as the primary entry point for interacting with the AVATAR framework. It seamlessly integrates with the underlying PythonAPI, 
-          automatically invoking the necessary components to execute experiments efficiently.</p>
+          automatically invoking the components with relevant parameters to start a PyGame window simulation displaying the scene in CARLA.</p>
         </em>
       </center>
       <ul style="margin-top: 20px;">
@@ -366,6 +366,33 @@
 </section>
 <!-- End AVATAR GUI -->
 
+
+<!-- ATC -->
+<section class="section hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop" style="margin-bottom: -50px;">
+      <center>
+          <h2 class="title is-3" style="margin-top: -50px;">⚙️ Post-Simulation Adversarial Trace Classifier </h2>
+      </center>
+      <center>
+        <em>
+        <p style="margin-bottom: 20px; margin-top: 30px">The Adversarial Trace Classifier (ATC) is developed for post simulation analysis 
+          to robustly differentiate between original vehicle behavior and the behavior affected by adversarial patches.</p>
+        </em>
+      </center>
+      <ul style="margin-top: 20px;">
+        <ul style="margin-top: 20px;">
+          <li style="margin-bottom: 10px;">&#10148; The <strong>Adversarial Trace Classifier (ATC)</strong> algorithm is thoroughly detailed in the main paper.</li>
+          <li style="margin-bottom: 10px;">&#10148; ATC is designed to minimize human bias in adversarial analysis and automatically flag adverarial presence during simulations</li>
+          <li style="margin-bottom: 10px;">&#10148; During simulations, the target vehicle's detection confidence score are recorded and stored in <em>results</em> folder of the repository.</li>
+          <li style="margin-bottom: 10px;">&#10148; The ATC analyzes these confidence score traces to identify adversarial activity during simulations.</li>
+          <li style="margin-bottom: 10px;">&#10148; Access the Jupyter Notebook code for implementing ATC here: <a href="https://github.com/sharmaabhijith/AVATAR/blob/master/adversarial_trace_classifier.ipynb" target="_blank" style="color: #007BFF;">GitHub Link</a>.</li>
+        </ul>        
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- End ATC -->
 
 
 <!--BibTex citation -->
